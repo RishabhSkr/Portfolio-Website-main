@@ -59,17 +59,77 @@ body.dark-mode a {
   color: var(--linkColor); /* Use the link color defined in dark mode */
 }
 
+.navbar {
+  position: fixed; /* Fixes the navbar to the viewport */
+  top: 0; /* Keeps it pinned at the top */
+  left: 0; /* Aligns it to the left */
+  width: 100%; /* Ensures it spans the entire width */
+  z-index: 1000; /* Ensures it stays on top of other elements */
+  display: flex; /* Keeps the existing flex layout */
+  justify-content: space-between; /* Ensures logo, nav-items, and toggle button stay spaced properly */
+  align-items: center; /* Centers items vertically */
+  padding: 1rem 2rem; /* Optional: Add padding for spacing */
+  flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+}
 
-#dark-mode-toggle{
+.logo-container {
+  display: flex;
+  align-items: center; /* Align logo items vertically */
+  gap: 0.5rem; /* Add spacing between logo image and text */
+}
+
+.nav-items {
+  display: flex;
+  gap: 1rem; /* Space out navigation items */
+  align-items: center;
+}
+
+.darkbtncontainer {
+  display: flex; /* Ensure the toggle button container is displayed */
+  align-items: center; /* Align button vertically */
+  margin-left: auto; /* Push the toggle button to the far right */
+}
+
+#dark-mode-toggle {
   background-image: var(--background-image);
-  width: var(--image-width);
-  height: var(--image-height);
+  width: 30px; /* Adjust size of the button */
+  height: 30px;
   background-size: contain; /* Ensure the entire image fits within the element */
   background-repeat: no-repeat; /* Prevent the image from repeating */
   background-position: center; /* Center the image within the element */
   background-color: transparent;
   border: none;
-  /* margin-top: -1px; */
+  cursor: pointer; /* Change cursor to pointer */
+}
+
+/* Media Query for smaller screens */
+@media screen and (max-width: 768px) {
+  .navbar {
+    padding: 0.5rem; /* Reduce padding */
+    justify-content: space-between; /* Ensure spacing remains consistent */
+  }
+
+  .nav-items {
+    display: none; /* Hide navigation items */
+  }
+
+  .darkbtncontainer {
+    position: absolute; /* Position the toggle button on top right */
+    top: 10px; /* Adjust position to top */
+    right: 10px; /* Align it to the right */
+  }
+}
+
+/* Media Query for medium screens */
+@media screen and (max-width: 1296px) and (min-width: 769px) {
+  .nav-items {
+    flex-wrap: wrap; /* Wrap nav items to prevent overlapping */
+    gap: 1rem;
+  }
+  
+  .darkbtncontainer {
+    margin-left: auto; /* Push the button to the far right */
+  }
 }
 
 
@@ -85,17 +145,6 @@ body.dark-mode a {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 2rem;
-}
-.navbar {
-  position: fixed; /* Fixes the navbar to the viewport */
-  top: 0; /* Keeps it pinned at the top */
-  left: 0; /* Aligns it to the left */
-  width: 100%; /* Ensures it spans the entire width */
-  z-index: 1000; /* Ensures it stays on top of other elements */
-  display: flex; /* Keeps the existing flex layout */
-  justify-content: space-between; /* Ensures logo and items stay spaced properly */
-  align-items: center; /* Centers items vertically */
-  padding: 1rem 2rem; /* Optional: Add padding for spacing */
 }
 
 
@@ -126,11 +175,9 @@ body.dark-mode a {
     gap:2rem;
     padding: 0 4em;
 }
-@media screen and (max-width: 768px) {
-  .nav-items {
-    display: none;
-  }
-}
+
+
+
 
 .nav-items div{
     font-size:20px;
@@ -154,6 +201,16 @@ a{
 }
 
 
+
+@media screen and (max-width: 768px) {
+  .nav-items div {
+    display: none; /* Hide all navigation items */
+  }
+  
+  .navbar {
+    justify-content: space-between; /* Keep the logo on the left and toggle aligned to the right */
+  }
+}
 .hero-section{
   position: relative;
   height: calc(100vh - 4rem);
@@ -284,7 +341,7 @@ a{
     height: 150px; /* Adjust as needed */
   }
   .hero-section {
-    flex-direction: column; /* Stack left and right sections */
+    flex-direction: column-reverse; /* Stack left and right sections */
     gap: 2rem; /* Add spacing between sections */
     padding: 2rem 1rem; /* Add some padding */
   }
@@ -359,6 +416,7 @@ a{
     width: 100%; /* Ensure button fits screen */
     padding: 1rem;
     font-size: 16px;
+    right : 1.3em;
   }
 }
 
@@ -473,192 +531,292 @@ a{
   }
 
 
-.project-section {
-  position: relative;
-  background: var(--ProjectContactSection);
-  margin-top: 4rem;
-  padding: 20px;
-}
-
-.svg-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url('./images/stack/bg2.svg'); /* Path to your SVG file */
-  background-size: contain; /* Adjust the size as needed */
-  background-position: center top; /* Positioning based on design */
-  pointer-events: none; /* Prevent the SVG from interfering with interactions */
-  z-index: 0;
-}
-
-  .page-header{
-    color:var(--bgOrange);
-    font-size:90px;
-    text-align:center;
-    padding-top:30px;
+  .project-section {
+    position: relative;
+    background: var(--ProjectContactSection);
+    margin-top: 4rem;
+    padding: 20px;
   }
-  .project-container{
+  
+  .svg-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('./images/stack/bg2.svg');
+    background-size: contain;
+    background-position: center top;
+    pointer-events: none;
+    z-index: 0;
+  }
+  
+  .page-header {
+    color: var(--bgOrange);
+    font-size: 90px;
+    text-align: center;
+    padding-top: 30px;
+  }
+  
+  .project-container {
     max-width: 1200px;
-    margin:0 auto;
-    padding:3rem 0;
-
-    display:flex;
-    flex-direction:column;
-    gap:120px;
+    margin: 0 auto;
+    padding: 3rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 120px;
   }
-
-  .project-card{
-    width:90%;
-    height:550px;
-    background-image: url(./images/projects/Project1.png);
+  
+  .project-card {
+    width: 90%;
+    height: 550px;
     background-size: cover;
-    /* background-repeat: no-repeat; */
-    position:relative;
-    box-shadow:0px 0px 40px #1f1f1f;
+    position: relative;
+    box-shadow: 0px 0px 40px #1f1f1f;
+    margin: 0 auto;
   }
-
-  .project-card::after{
-    content:"";
-    position:absolute;
-    top:0;
-    left:0;
-    right:0;
-    bottom:0;
+  
+  .project-card::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     background-color: #1f1f1f9a;
-    z-index:0;
-    /* transform: scaleX(1); */
+    z-index: 0;
   }
-
-  .project-card::before{
-    content:"";
-    position:absolute;
-    top:0;
-    left:0;
-    right:0;
-    bottom:0;
+  
+  .project-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     background: linear-gradient(45deg, #343d68, #343d68be, #343d687c);
-    transform:scaleX(0);
+    transform: scaleX(0);
     transform-origin: left;
     transition: all 0.4s;
-    z-index:1;
+    z-index: 1;
   }
-
-  .project-card:hover::before{
-    transform:scaleX(1);
+  
+  .project-card:hover::before {
+    transform: scaleX(2);
   }
-
-  .project-number{
-    position:absolute;
-    font-size:200px;
-    font-weight:600;
-    color:white;
-    z-index:10;
-    /* display:none; */
+  
+  .project-number {
+    position: absolute;
+    font-size: 200px;
+    font-weight: 600;
+    color: white;
+    z-index: 10;
     opacity: 0;
   }
-
-  .project-card:hover .project-number{
-    /* display:block; */
+  
+  .project-card:hover .project-number {
     opacity: 1;
   }
-
-  .project-number-right{
-    right:-40px;
-    top:-45px;
-  }
-
-  .project-number-left{
-    left:-40px;
-    top:-45px;
-  }
-
-  .project-content{
-    position:absolute;
-    display:flex;
-    flex-direction:column;
-    color:white;
-    padding:2em;
-    bottom:20%;
-    z-index:5;
-    gap:1em;
-    transition:all 0.4s;
-  }
-
-
-  .project-content-left{ 
-    left:10%;
-  }
-
-  .project-content-right{ 
-    right:10%;
-  }
-
-  .project-skills-container{
-    width:60%;
-    display:flex;
-    gap:10px;
-    flex-wrap:wrap;
   
+  .project-number-right {
+    right: -40px;
+    top: -45px;
   }
-
-  .project-skill{
-    width:40px;
+  
+  .project-number-left {
+    left: -40px;
+    top: -45px;
   }
-
-  .project-heading{
-    font-size:50px;
+  
+  .project-content {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    padding: 2em;
+    bottom: 20%;
+    z-index: 5;
+    gap: 1em;
+    transition: all 0.4s;
+  }
+  
+  .project-content-left {
+    left: 10%;
+  }
+  
+  .project-content-right {
+    right: 10%;
+  }
+  
+  .project-skills-container {
+    width: 60%;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  
+  .project-skill {
+    width: 40px;
+  }
+  
+  .project-heading {
+    font-size: 50px;
     font-weight: bold;
-    line-height:3rem;
+    line-height: 3rem;
   }
   
-  .project-subHeading{
-    width:70%;
-    font-size:16px;
+  .project-subHeading {
+    width: 70%;
+    font-size: 16px;
     font-style: italic;
   }
-
-
-  .btn-grp{
-    display:flex;
-    gap:0.9rem;
-    align-items:center;
+  
+  .btn-grp {
+    display: flex;
+    gap: 0.9rem;
+    align-items: center;
   }
-
-  .btn-project:hover{
-    border:none;
+  
+  .btn-project:hover {
+    border: none;
   }
-
-  .icon{
-    cursor:pointer;
-    color:white;
-    font-size:35px;
-    transition:all 0.4s;
+  
+  .icon {
+    cursor: pointer;
+    color: white;
+    font-size: 35px;
+    transition: all 0.4s;
   }
-
-  .icon:hover{
-    color:var(--bgOrange);
+  
+  .icon:hover {
+    color: var(--bgOrange);
   }
-
-  .project-card:hover .project-content{
-    transform:scale(1.1);
+  
+  .project-card:hover .project-content {
+    transform: scale(1.1);
   }
-
-  #project1{
+  
+  #project1 {
     background-image: url(./images/projects/Project1.png);
   }
-  #project2{
-    margin-left:120px;
+  
+  #project2 {
+    margin-left: 120px;
     background-image: url(./images/projects/Project2.png);
   }
-  #project3{
+  
+  #project3 {
     background-image: url(./images/projects/Project3.png);
   }
-  #project4{
-    margin-left:120px;
+  
+  #project4 {
+    margin-left: 120px;
     background-image: url(./images/projects/Project4.png);
   }
+  
+  /* Media Queries for Responsiveness */
+  @media (max-width: 1024px) {
+    .project-card {
+      width: 80%;
+      height: 450px;
+    }
+  
+    .project-heading {
+      font-size: 40px;
+    }
+  
+    .project-subHeading {
+      width: 90%;
+    }
+  
+    .project-number {
+      font-size: 150px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .project-container {
+      gap: 80px;
+    }
+  
+    .project-card {
+      width: 100%;
+      height: 400px;
+    }
+  
+    .project-heading {
+      font-size: 30px;
+    }
+  
+    .project-content {
+      padding: 1em;
+      bottom: 15%;
+    }
+  
+    .project-number {
+      font-size: 120px;
+    }
+    .project-skills-container {
+      width:30%;
+      gap:5px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .page-header {
+      font-size: 50px;
+    }
+  
+    .project-container {
+      padding: 1rem 0;
+      gap: 40px;
+    }
+  
+    .project-card {
+      width: 100%;
+      height: 300px;
+    }
+  
+    .project-content {
+      gap: 0.5em;
+      bottom: 0;
+      right: 0;
+    }
+  
+    .project-heading {
+      font-size: 16px;
+    }
+  
+    .project-subHeading {
+      font-size: 14px;
+      width: 100%;
+    }
+  
+    .project-number {
+      font-size: 60px;
+      right: auto;
+  }
+    .project-skills-container {
+      width:100%;
+      gap:5px;
+    }
+    .project-skill{
+      width:16px;
+      height: 16px;
+    }
+    .project-content-left{
+      left: 0;
+    }
+    .project-content-right{
+      right: 4;
+    }
+    .icon{
+      font-size: 16px;
+    }
+    
+  }
+  
+  
 
 
   .skills-container{
@@ -748,6 +906,8 @@ a{
       padding: 3rem;
       margin: 5rem auto;
       gap: 20px;
+      display: flex;
+      flex-wrap: wrap ;
   }
 
   .skill-container-left, .skill-container-right {
@@ -775,6 +935,8 @@ a{
       width: 70px;
   }
 }
+
+ /* mobile dev */
 @media (max-width: 480px) {
   .skills-container {
       padding: 2rem;
@@ -800,9 +962,15 @@ a{
   }
 
   .skills-logo {
-      width: 60px;
+      width: 30px;
+      height: 30px;
+  }
+  .blob-style{
+    width: 70%;
+    filter: blur(1px) ;
   }
 }
+
 .contactus-form-container{
   width:100%;
   background: var(--ProjectContactSection);
@@ -871,6 +1039,36 @@ a{
   padding:0 1rem;
   font-size:1.5rem;
 }
+#submit-btn:active {
+  background-color: var(--bgOrange);
+}
+
+@media screen and (max-width: 480px) {
+  .container {
+    padding: 0 1rem;
+  }
+  .contactus-heading {
+    font-size: 3rem;
+  }
+  .contactus-sub-heading {
+    font-size: 1.5rem;
+  }
+  .contactus-form-container {
+    margin-right: 5%;
+  }
+  .form {
+    margin: 2rem 7rem 5rem 3rem;
+  } 
+  #submit-btn {
+    width: 40%;
+    font-size: 0;
+    border-radius: 50px;
+    padding: 3%;
+  }
+
+}
+
+
 
 footer {
   background-color: #222;
@@ -935,10 +1133,7 @@ footer {
 }
 
 @media (max-width: 768px) {
-  .footer-wrapper {
-    gap: 1rem;
-  }
-
+  
   .footer-faded-text {
     font-size: 1.5rem;
   }
