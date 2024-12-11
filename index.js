@@ -1,5 +1,34 @@
-const toggleButton = document.getElementById("dark-mode-toggle");
+// Update the hamburger menu functionality
+const hamburger = document.querySelector('.hamburger');
+const navItems = document.querySelector('.nav-items');
 const body = document.body;
+
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  navItems.classList.toggle('active');
+  // Prevent body scroll when menu is open
+  body.style.overflow = navItems.classList.contains('active') ? 'hidden' : 'auto';
+});
+
+// Close menu when clicking a link
+document.querySelectorAll('.nav-items a').forEach(link => {
+  link.addEventListener('click', () => {
+    hamburger.classList.remove('active');
+    navItems.classList.remove('active');
+    body.style.overflow = 'auto';
+  });
+});
+
+// Close menu when clicking outside
+document.addEventListener('click', (e) => {
+  if (!navItems.contains(e.target) && !hamburger.contains(e.target)) {
+    hamburger.classList.remove('active');
+    navItems.classList.remove('active');
+    body.style.overflow = 'auto';
+  }
+});
+
+const toggleButton = document.getElementById("dark-mode-toggle");
 
 // Add 'dark-mode' class to body by default
 body.classList.add('dark-mode');
