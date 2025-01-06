@@ -635,11 +635,14 @@ a{
     display: flex;
     flex-direction: column;
     gap: 120px;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
   }
   
   .project-card {
-    width: 70%; /* Adjusted width */
-    height: 450px; /* Adjusted height */
+    width: 300px;
+    min-height: 400px;
     background-size: cover;
     position: relative;
     box-shadow: 0px 0px 40px #1f1f1f;
@@ -771,11 +774,13 @@ a{
     transform: scale(1.1);
   }
 
-  #project0, #project1, #project3 {
+  #project00,#project0, #project1, #project3 {
     height: auto;
     min-height: 550px; /* Increased height to accommodate content */
   }
-
+  #project00{
+    background-image: url(dist\images\projects\Project00.png));
+  }
   #project0 {
     background-image: url(./images/projects/Project0.png);
   }
@@ -797,6 +802,13 @@ a{
     background-image: url(./images/projects/Project4.png);
   }
   
+  #project5 {
+    background-image: url('./images/projects/Project5.png');
+  }
+  
+  #project6 {
+    background-image: url('./images/projects/Project6.png');
+  }
   
   /* Media Queries for Responsiveness */
   @media (max-width: 1024px) {
@@ -948,7 +960,7 @@ a{
     min-height: 400px;
   }
 
-  #project0, #project1, #project3 {
+  #project00, #project0, #project1, #project3 {
     min-height: 600px;
   }
 
@@ -986,7 +998,7 @@ a{
     min-height: 450px;
   }
 
-  #project0, #project1, #project3 {
+  #project00,#project0, #project1, #project3 {
     min-height: 500px;
   }
 
