@@ -718,11 +718,12 @@ a{
   }
   
   .project-content-left {
-    left: 10%;
+    left: 3%;
   }
   
   .project-content-right {
     right: 5%; /* Adjusted right position */
+    left:4%
   }
   
   .project-skills-container {
@@ -774,16 +775,11 @@ a{
     transform: scale(1.1);
   }
 
-  #project00,#project0, #project1, #project3 {
+  #project1, #project2, #project3, #project4,  #project5, #project6 #project7 {
     height: auto;
-    min-height: 550px; /* Increased height to accommodate content */
+    min-height: 450px; /* Increased height to accommodate content */
   }
-  #project00{
-    background-image: url(dist\images\projects\Project00.png));
-  }
-  #project0 {
-    background-image: url(./images/projects/Project0.png);
-  }
+
   #project1 {
     background-image: url(./images/projects/Project1.png);
   }
@@ -808,6 +804,9 @@ a{
   
   #project6 {
     background-image: url('./images/projects/Project6.png');
+  }
+  #project7 {
+    background-image: url('./images/projects/Project7.png');
   }
   
   /* Media Queries for Responsiveness */
@@ -947,9 +946,6 @@ a{
     .btn-grp {
       justify-content: center;
     }
-    #project2, #project3 {
-      margin-left: 0;
-    }
   }
   
   /* Update project card styles for medium screens */
@@ -960,7 +956,7 @@ a{
     min-height: 400px;
   }
 
-  #project00, #project0, #project1, #project3 {
+  #project1, #project2, #project3, #project4,  #project5, #project6 #project7 {
     min-height: 600px;
   }
 
@@ -998,7 +994,7 @@ a{
     min-height: 450px;
   }
 
-  #project00,#project0, #project1, #project3 {
+  #project1, #project2, #project3, #project4,  #project5, #project6 #project7 {
     min-height: 500px;
   }
 
